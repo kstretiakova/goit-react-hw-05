@@ -1,64 +1,41 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 import s from "./MovieList.module.css";
-import Loader from "../Loader/Loader";
-import { useParams } from "react-router-dom";
 
-const API_URL = "https://api.themoviedb.org/3/movie";
-const TOKEN =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDg5ZWI1Y2FmNTFiY2UwZTNiODE5OTU1NjZhNmIxYyIsIm5iZiI6MTczMjU4MTA0NC45MDMxNDcyLCJzdWIiOiI2NzQ1MTIwMGQ4ZGI3ZGQxYmE0NWE1NTkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Oi5Y2So8P2fVSM1c9srA04JCJx59AzvNbe5CWC0v8yE";
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-const MovieCast = () => {
-  const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const MovieList = ({ movies }) => {
+  const location = useLocation(); 
 
-  useEffect(() => {
-    const fetchCast = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/${movieId}/credits`, {
-          headers: { Authorization: `Bearer ${TOKEN}` },
-        });
-
-        console.log(response);
-
-        setCast(response.data.cast);
-      } catch (err) {
-        setError("Failed to fetch cast information.");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCast();
-  }, [movieId]);
-
-
-  if (loading) return <Loader />;
-  if (error) return <p className={s.error}>{error}</p>;
-  if (cast.length === 0) return <p>No cast information available.</p>;
+  if (movies.length === 0) {
+    return (
+      <p className={s.noMovies}>No movies found. Try a different search!</p>
+    );
+  }
 
   return (
     <ul className={s.list}>
-      {cast.map((actor) => (
-        <li key={actor.id} className={s.item}>
-          <img
-            src={
-              actor.profile_path
-                ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                : "https://via.placeholder.com/200x300?text=No+Image"
-            }
-            alt={actor.name}
-            className={s.image}
-          />
-          <p className={s.name}>{actor.name}</p>
-          <p className={s.character}>as {actor.character}</p>
+      {movies.map(({ id, title, poster_path }) => (
+        <li key={id} className={s.listItem}>
+          <Link
+            to={`/movies/${id}`}
+            state={{ from: location }} 
+            className={s.movieLink}
+          >
+            {poster_path ? (
+              <img
+                src={`${IMAGE_BASE_URL}${poster_path}`}
+                alt={title}
+                className={s.poster}
+              />
+            ) : (
+              <div className={s.noPoster}>No Image</div>
+            )}
+            <h2 className={s.title}>{title}</h2>
+          </Link>
         </li>
       ))}
     </ul>
   );
 };
 
-export default MovieCast;
+export default MovieList;

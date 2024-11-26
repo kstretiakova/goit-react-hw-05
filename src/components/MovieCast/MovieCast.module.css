@@ -1,0 +1,30 @@
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+  }
+  
+  .item {
+    text-align: center;
+  }
+  
+  .image {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .name {
+    font-weight: bold;
+    margin: 10px 0 5px;
+  }
+  
+  .character {
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .error {
+    color: red;
+  }

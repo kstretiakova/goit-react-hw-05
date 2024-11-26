@@ -1,0 +1,34 @@
+.container {
+    padding: 20px;
+  }
+  
+  .poster {
+    width: 300px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  .backLink {
+    text-decoration: none;
+    color: #ff6b08;
+    font-weight: bold;
+  }
+  
+  .backLink:hover {
+    color: #ff8e3a;
+  }
+  
+  .additional {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .additional a {
+    text-decoration: none;
+    color: #2e2f42;
+  }
+  
+  .additional a:hover {
+    color: #ff6b08;
+  }

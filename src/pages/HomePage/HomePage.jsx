@@ -5,7 +5,7 @@ import Loader from "../../components/Loader/Loader";
 
 const API_URL = "https://api.themoviedb.org/3/trending/movie/day";
 const TOKEN =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDg5ZWI1Y2FmNTFiY2UwZTNiODE5OTU1NjZhNmIxYyIsIm5iZiI6MTczMjU4MDE4OC41MDA0NTcsInN1YiI6IjY3NDUxMjAwZDhkYjdkZDFiYTQ1YTU1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZBPIFaW8OQQguvP36TqfNMN-LkQEbPpX8V--wypQqN8";
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDg5ZWI1Y2FmNTFiY2UwZTNiODE5OTU1NjZhNmIxYyIsIm5iZiI6MTczMjU4MTA0NC45MDMxNDcyLCJzdWIiOiI2NzQ1MTIwMGQ4ZGI3ZGQxYmE0NWE1NTkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Oi5Y2So8P2fVSM1c9srA04JCJx59AzvNbe5CWC0v8yE";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
